@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Jor Patti</title>
+    <meta charset="utf-8" />
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{ % static '/css/bootstrap.min.css' %}" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: gray;
+        }
+
+        .player_box {
+            background-color: red;
+            height: 280px;
+            width: 250px;
+            float: left;
+            margin: 8px;
+            text-align: center;
+        }
+
+        .card_img {
+            height: 100px;
+            width: 60px;
+        }
+
+        #info {
+            height: 200px;
+            width: 100%;
+            background-color: blue;
+        }
+
+        #info_2 {
+            height: 200px;
+            width: 100%;
+            background-color: white;;
+        }
+
+        .players_card_area {
+            height: 300px;
+            width: 100%;
+            background-color: red;
+        }
+    </style>
+    
+    
+</head>
+
+<body>
+    
+    <div class="container-fluid" style="min-height:95%; ">
+        <div class="players_card_area">
+           header
+        </div>
+        <div>
+           
+            <div id="info_2">
+            body
+            {% block content %}
+
+            {% endblock %}
+            </div>
+             
+            
+            <div id="info">
+             footer
+            </div>
+            <!--<div class="info">
+<h3>A : Number of Cards Left : 5</h3>
+<h3>B : Number of Cards Left : 5</h3>
+<h3>C : Number of Cards Left : 5</h3>
+<h3>D : Number of Cards Left : 5</h3>
+<h3>E : Number of Cards Left : 5</h3>
+</div>-->
+        </div>
+    </div>
+</body>
+
+</html>
