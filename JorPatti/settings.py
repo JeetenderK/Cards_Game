@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-	'JorPatti_WebApp',
+	'channels',
+    'JorPatti_WebApp',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -69,6 +70,10 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'JorPatti.wsgi.application'
+
+# This will start ASGI/Channels overriding normal execution
+# meaning Channels development server has taken over from the Django development server.
+ASGI_APPLICATION = 'JorPatti.routing.application'
 
 
 # Database
@@ -119,3 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# I added this manually
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

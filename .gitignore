@@ -1,0 +1,9 @@
+# ignore DB file
+db.sqlite3
+
+# ignore cache folders
+__pyacache__/
+__init__.py/
+
+# Backups
+Game_Logic_bckp.py
