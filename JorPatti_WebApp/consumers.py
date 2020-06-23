@@ -257,7 +257,7 @@ class JorPatti_WebAppConsumer(AsyncConsumer):
 
         Global_Variables.Middle_Deck_Remaining_Card_Set = Remaining_Card_Set
         Global_Variables.Open_Deck = pd.DataFrame(columns=["Rank", "Color"])
-        #obj = "Love"
+        
 
         
         arr_symbol = ['A', 'B', 'C', 'D', 'E']
@@ -265,8 +265,8 @@ class JorPatti_WebAppConsumer(AsyncConsumer):
 
         arr = list(zip(arr_symbol, arr_variable))
 
-        arrC = ['A', 'B', 'C', 'D', 'E', 'Middle', 'Open']
-        arrV = [A, B, C, D, E, Global_Variables.Middle_Deck_Remaining_Card_Set, Global_Variables.Open_Deck]
+        '''arrC = ['A', 'B', 'C', 'D', 'E', 'Middle', 'Open']
+        arrV = [A, B, C, D, E, Global_Variables.Middle_Deck_Remaining_Card_Set, Global_Variables.Open_Deck]'''
 
         while(1):
 
@@ -274,6 +274,7 @@ class JorPatti_WebAppConsumer(AsyncConsumer):
 
                 Is_Winner, Player_var, Open_Card, Picked_Card, Drop_Card, Log = player_move_II([Player[0], Player[1]])
                 
+                '''
                 # Code for Matching
                 for c1 in list(zip(arrC, arrV)):
                     for c2 in list(zip(arrC, arrV)):
@@ -282,6 +283,7 @@ class JorPatti_WebAppConsumer(AsyncConsumer):
                                 print("Found match between ",c1[0]," and ",c2[0])
                                 print(pd.merge(c1[1], c2[1], on=['Rank', 'Color'], how='inner').to_string())
                                 #input("\nMatch Found...Hit enter to proceed")
+                '''
 
                 print(Player_var)
                 Player_json =  [rank for rank in (Player_var.Rank.values + [color[0] for color in Player_var.Color.values])]
