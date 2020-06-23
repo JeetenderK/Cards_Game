@@ -49,184 +49,189 @@
 
             document.getElementById("start").disabled = true;
             document.getElementById("stop").disabled = false;
+            document.getElementById("sp01").innerHTML = " -- ";
+            document.getElementById("sp02").innerHTML = " -- ";
+            document.getElementById("sp03").innerHTML = " -- ";
+            document.getElementById("sp04").innerHTML = " -- ";
+
+            $("#PL011").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL012").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL013").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL014").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL015").attr("src", "../../static/PNG/gray_back.png");
+
+            $("#PL021").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL022").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL023").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL024").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL025").attr("src", "../../static/PNG/gray_back.png");
+
+            $("#PL031").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL032").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL033").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL034").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL035").attr("src", "../../static/PNG/gray_back.png");
+
+            $("#PL041").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL042").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL043").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL044").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL045").attr("src", "../../static/PNG/gray_back.png");
+
+            $("#PL051").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL052").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL053").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL054").attr("src", "../../static/PNG/gray_back.png");
+            $("#PL055").attr("src", "../../static/PNG/gray_back.png");
             
 
             socket.onmessage = function(e){
                 console.log("message", e.data);
                 var obj = JSON.parse(e.data)
                 console.log("JSON obj :", obj);
+                
+                document.querySelector('#log').value += (obj.Log + '\n');
+                if(obj.Open_Card != undefined)
+                {
+                    $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
+                }
+                
+                if(obj.Picked_Card != undefined)
+                {
+                    $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
+                }
 
-                if(obj.Player1 != undefined)
+                if(obj.Drop_Card != undefined)
+                {
+                    $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
+                }
+                
+                if(obj.No_of_Rounds != undefined)
+                {
+                    document.getElementById("sp01").innerHTML = obj.No_of_Rounds ;
+                }
+
+                if(obj.Cards_In_Middle != undefined)
+                {
+                    document.getElementById("sp02").innerHTML = obj.Cards_In_Middle ;
+                }
+
+                if(obj.Cards_In_Open != undefined)
+                {
+                    document.getElementById("sp03").innerHTML = obj.Cards_In_Open ;
+                }
+                
+                if(obj.Middle_Deck_Finish_Count != undefined)
+                {
+                    document.getElementById("sp04").innerHTML = obj.Middle_Deck_Finish_Count ;
+                }
+
+
+                if(obj.Player == 'A' && obj.Player_Card != undefined)
                 {
                     $("#PL01Div").css("background", "#80ff80");
                     $("#PL02Div").css("background", "#73AD21");
                     $("#PL03Div").css("background", "#73AD21");
                     $("#PL04Div").css("background", "#73AD21");
                     $("#PL05Div").css("background", "#73AD21");
-                    $("#PL011").attr("src", "../../static/PNG/" + obj.Player1[0] + ".png");
-                    $("#PL012").attr("src", "../../static/PNG/" + obj.Player1[1] + ".png");
-                    $("#PL013").attr("src", "../../static/PNG/" + obj.Player1[2] + ".png");
-                    $("#PL014").attr("src", "../../static/PNG/" + obj.Player1[3] + ".png");
-                    $("#PL015").attr("src", "../../static/PNG/" + obj.Player1[4] + ".png");
+                    $("#PL011").attr("src", "../../static/PNG/" + obj.Player_Card[0] + ".png");
+                    $("#PL012").attr("src", "../../static/PNG/" + obj.Player_Card[1] + ".png");
+                    $("#PL013").attr("src", "../../static/PNG/" + obj.Player_Card[2] + ".png");
+                    $("#PL014").attr("src", "../../static/PNG/" + obj.Player_Card[3] + ".png");
+                    $("#PL015").attr("src", "../../static/PNG/" + obj.Player_Card[4] + ".png");
                     
-                    if(obj.Open_Card != undefined)
-                    {
-                        $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
-                    }
-
                     if(obj.Is_Winner)
                     {
                         $("#PL01Div").css("background", "#EAC117");
-                    }
-
-                    if(obj.Picked_Card != undefined)
-                    {
-                        $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
-                    }
-
-                    if(obj.Drop_Card != undefined)
-                    {
-                        $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
-                    }
+                    } 
                 }
 
-                if(obj.Player2 != undefined)
+
+                if(obj.Player == 'B' && obj.Player_Card != undefined)
                 {
                     $("#PL01Div").css("background", "#73AD21");
                     $("#PL02Div").css("background", "#80ff80");
                     $("#PL03Div").css("background", "#73AD21");
                     $("#PL04Div").css("background", "#73AD21");
                     $("#PL05Div").css("background", "#73AD21");
-                    $("#PL021").attr("src", "../../static/PNG/" + obj.Player2[0] + ".png");
-                    $("#PL022").attr("src", "../../static/PNG/" + obj.Player2[1] + ".png");
-                    $("#PL023").attr("src", "../../static/PNG/" + obj.Player2[2] + ".png");
-                    $("#PL024").attr("src", "../../static/PNG/" + obj.Player2[3] + ".png");
-                    $("#PL025").attr("src", "../../static/PNG/" + obj.Player2[4] + ".png");
+                    $("#PL021").attr("src", "../../static/PNG/" + obj.Player_Card[0] + ".png");
+                    $("#PL022").attr("src", "../../static/PNG/" + obj.Player_Card[1] + ".png");
+                    $("#PL023").attr("src", "../../static/PNG/" + obj.Player_Card[2] + ".png");
+                    $("#PL024").attr("src", "../../static/PNG/" + obj.Player_Card[3] + ".png");
+                    $("#PL025").attr("src", "../../static/PNG/" + obj.Player_Card[4] + ".png");
                     
-                    if(obj.Open_Card != undefined)
-                    {
-                        $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
-                    }
+                    
 
                     if(obj.Is_Winner)
                     {
                         $("#PL02Div").css("background", "#EAC117");
                     }
-
-                    if(obj.Picked_Card != undefined)
-                    {
-                        $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
-                    }
-
-                    if(obj.Drop_Card != undefined)
-                    {
-                        $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
-                    }
+                    
                 }
 
-                if(obj.Player3 != undefined)
+
+                if(obj.Player == 'C' && obj.Player_Card != undefined)
                 {
                     $("#PL01Div").css("background", "#73AD21");
                     $("#PL02Div").css("background", "#73AD21");
                     $("#PL03Div").css("background", "#80ff80");
                     $("#PL04Div").css("background", "#73AD21");
                     $("#PL05Div").css("background", "#73AD21");
-                    $("#PL031").attr("src", "../../static/PNG/" + obj.Player3[0] + ".png");
-                    $("#PL032").attr("src", "../../static/PNG/" + obj.Player3[1] + ".png");
-                    $("#PL033").attr("src", "../../static/PNG/" + obj.Player3[2] + ".png");
-                    $("#PL034").attr("src", "../../static/PNG/" + obj.Player3[3] + ".png");
-                    $("#PL035").attr("src", "../../static/PNG/" + obj.Player3[4] + ".png");
+                    $("#PL031").attr("src", "../../static/PNG/" + obj.Player_Card[0] + ".png");
+                    $("#PL032").attr("src", "../../static/PNG/" + obj.Player_Card[1] + ".png");
+                    $("#PL033").attr("src", "../../static/PNG/" + obj.Player_Card[2] + ".png");
+                    $("#PL034").attr("src", "../../static/PNG/" + obj.Player_Card[3] + ".png");
+                    $("#PL035").attr("src", "../../static/PNG/" + obj.Player_Card[4] + ".png");
                     
-                    if(obj.Open_Card != undefined)
-                    {
-                        $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
-                    }
 
                     if(obj.Is_Winner)
                     {
                         $("#PL03Div").css("background", "#EAC117");
                     }
-
-                    if(obj.Picked_Card != undefined)
-                    {
-                        $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
-                    }
-
-                    if(obj.Drop_Card != undefined)
-                    {
-                        $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
-                    }
                 }
 
-                if(obj.Player4 != undefined)
+                if(obj.Player == 'D' && obj.Player_Card != undefined)
                 {
                     $("#PL01Div").css("background", "#73AD21");
                     $("#PL02Div").css("background", "#73AD21");
                     $("#PL03Div").css("background", "#73AD21");
                     $("#PL04Div").css("background", "#80ff80");
                     $("#PL05Div").css("background", "#73AD21");
-                    $("#PL041").attr("src", "../../static/PNG/" + obj.Player4[0] + ".png");
-                    $("#PL042").attr("src", "../../static/PNG/" + obj.Player4[1] + ".png");
-                    $("#PL043").attr("src", "../../static/PNG/" + obj.Player4[2] + ".png");
-                    $("#PL044").attr("src", "../../static/PNG/" + obj.Player4[3] + ".png");
-                    $("#PL045").attr("src", "../../static/PNG/" + obj.Player4[4] + ".png");
-
-                    if(obj.Open_Card != undefined)
-                    {
-                        $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
-                    }
+                    $("#PL041").attr("src", "../../static/PNG/" + obj.Player_Card[0] + ".png");
+                    $("#PL042").attr("src", "../../static/PNG/" + obj.Player_Card[1] + ".png");
+                    $("#PL043").attr("src", "../../static/PNG/" + obj.Player_Card[2] + ".png");
+                    $("#PL044").attr("src", "../../static/PNG/" + obj.Player_Card[3] + ".png");
+                    $("#PL045").attr("src", "../../static/PNG/" + obj.Player_Card[4] + ".png");
 
                     if(obj.Is_Winner)
                     {
                         $("#PL04Div").css("background", "#EAC117");
                     }
-
-                    if(obj.Picked_Card != undefined)
-                    {
-                        $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
-                    }
-
-                    if(obj.Drop_Card != undefined)
-                    {
-                        $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
-                    }
                 }
 
-                if(obj.Player5 != undefined)
+
+                if(obj.Player == 'E' && obj.Player_Card != undefined)
                 {
                     $("#PL01Div").css("background", "#73AD21");
                     $("#PL02Div").css("background", "#73AD21");
                     $("#PL03Div").css("background", "#73AD21");
                     $("#PL04Div").css("background", "#73AD21");
                     $("#PL05Div").css("background", "#80ff80");
-                    $("#PL051").attr("src", "../../static/PNG/" + obj.Player5[0] + ".png");
-                    $("#PL052").attr("src", "../../static/PNG/" + obj.Player5[1] + ".png");
-                    $("#PL053").attr("src", "../../static/PNG/" + obj.Player5[2] + ".png");
-                    $("#PL054").attr("src", "../../static/PNG/" + obj.Player5[3] + ".png");
-                    $("#PL055").attr("src", "../../static/PNG/" + obj.Player5[4] + ".png");
+                    $("#PL051").attr("src", "../../static/PNG/" + obj.Player_Card[0] + ".png");
+                    $("#PL052").attr("src", "../../static/PNG/" + obj.Player_Card[1] + ".png");
+                    $("#PL053").attr("src", "../../static/PNG/" + obj.Player_Card[2] + ".png");
+                    $("#PL054").attr("src", "../../static/PNG/" + obj.Player_Card[3] + ".png");
+                    $("#PL055").attr("src", "../../static/PNG/" + obj.Player_Card[4] + ".png");
 
-                    if(obj.Open_Card != undefined)
-                    {
-                        $("#OD011").attr("src", "../../static/PNG/" + obj.Open_Card[0] + ".png");
-                    }
-                    
+
                     if(obj.Is_Winner)
                     {
                         $("#PL05Div").css("background", "#EAC117");
                     }
 
-                    if(obj.Picked_Card != undefined)
-                    {
-                        $("#OD012").attr("src", "../../static/PNG/" + obj.Picked_Card[0] + ".png");
-                    }
-
-                    if(obj.Drop_Card != undefined)
-                    {
-                        $("#OD013").attr("src", "../../static/PNG/" + obj.Drop_Card[0] + ".png");
-                    }
                 }
-                //document.querySelector('#log').value += (e.data + '\n');
             };
+            
             socket.onopen = function(e){
                 console.log("open", e);
             };
@@ -285,42 +290,46 @@
             <table>
                 <tr>
                     <td>
-                        <div>
-                            Picked Card :
-                        </div>
-                    </td>
-                    <td>
-                        <div>
+                        <div>Picked Card :
                             <img id="OD012" src="../../static/PNG/gray_back.png" alt="My image"/>
-                            
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div>
-                            Dropped Card :
                         </div>
                     </td>
                     <td>
-                        <div>
+                        <div>Dropped Card :
                             <img id="OD013" src="../../static/PNG/gray_back.png" alt="My image"/>
                         </div>
                     </td>
-                </tr>
-                <tr>
                     <td>
-                        <div>
-                            Open Card :
-                        </div>
-                    </td>
-                    <td>
-                        <div>
+                        <div>Open Card :
                             <img id="OD011" src="../../static/PNG/gray_back.png" alt="My image"/>
                         </div>
                     </td>
                 </tr>
-            </table>    
+                <tr>
+                    <td>
+                        <div>
+                            Number of Rounds :
+                            <span id="sp01" style="color: teal;"></span>
+                        </div>
+                        <div>
+                            Cards in Middle Deck :
+                            <span id="sp02" style="color: teal;"></span>
+                        </div>
+                        <div>
+                            Cards in Open Deck :
+                            <span id="sp03" style="color: teal;"></span>
+                        </div>
+                        <div>
+                            Middle Deck Finish Count :
+                            <span id="sp04" style="color: teal;"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>   
+            <div>
+                Logs :
+                <textarea id="log" cols="60" rows="20"></textarea>
+            </div> 
         </div>
 
         <div class="rcorners1" id="PL01Div">
